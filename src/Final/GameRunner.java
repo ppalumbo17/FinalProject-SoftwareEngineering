@@ -1,7 +1,11 @@
 package Final;
 
+import java.lang.Math;
 public class GameRunner {
 
+	private static final double GRAVITY = 9.8;
+	private double angle, velocity, distance;
+	
 	void calcTrajectory(){
 		
 	}
@@ -17,29 +21,30 @@ public class GameRunner {
 	}
 
 	public double getAngle() {
-		return 0;
+		return angle;
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void setAngle(int i) {
+	public void setAngle(double i) {
+		angle = i;
 		// TODO Auto-generated method stub
 		
 	}
 
 	public void setInitialVelocity(double i) {
-		// TODO Auto-generated method stub
+		velocity = i;
 		
 	}
 
 	public double getInitialVelocity() {
 		// TODO Auto-generated method stub
-		return 0;
+		return velocity;
 	}
 
 	public double getDistance() {
-		// TODO Auto-generated method stub
-		return 1;
+		distance = (Math.pow(velocity, 2.0)*Math.sin(2*angle*Math.PI/180))/GRAVITY;
+		return distance;
 	}
 
 	public boolean targetReached() {
