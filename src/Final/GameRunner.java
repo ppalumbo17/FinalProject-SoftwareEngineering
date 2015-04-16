@@ -46,9 +46,16 @@ public class GameRunner {
 		distance = (Math.pow(velocity, 2.0)*Math.sin(2*angle*Math.PI/180))/GRAVITY;
 		return distance;
 	}
+	
+	public double distanceFromTarget(double target){
+		double result = Math.abs(getDistance()-target);
+		return result;
+	}
 
-	public boolean targetReached() {
-		// TODO Auto-generated method stub
+	public boolean targetReached(double target) {
+		System.out.println(getDistance()-target);
+		if(Math.abs(getDistance()-target) < 0.1)
+			return true;
 		return false;
 	}
 }
