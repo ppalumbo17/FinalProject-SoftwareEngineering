@@ -42,19 +42,19 @@ public class PartITests {
 	public void testCalcInputs(){
 		runner.setAngle(45);
 		runner.setInitialVelocity(10);
-		Assert.assertTrue(Math.abs(10.20408 - runner.getDistance()) < 0.00001);
+		Assert.assertTrue(Math.abs(10.20408 - runner.getXDistance()) < 0.00001);
 		
 		runner.setAngle(45);
 		runner.setInitialVelocity(20);
-		Assert.assertTrue(Math.abs(40.81632 - runner.getDistance()) < 0.00001);
+		Assert.assertTrue(Math.abs(40.81632 - runner.getXDistance()) < 0.00001);
 
 		runner.setAngle(35);
 		runner.setInitialVelocity(10);
-		Assert.assertTrue(Math.abs(9.58870 - runner.getDistance()) < 0.00001);
+		Assert.assertTrue(Math.abs(9.58870 - runner.getXDistance()) < 0.00001);
 		
 		runner.setAngle(35);
 		runner.setInitialVelocity(20);
-		Assert.assertTrue(Math.abs(38.354801 - runner.getDistance()) < 0.00001);	
+		Assert.assertTrue(Math.abs(38.354801 - runner.getXDistance()) < 0.00001);	
 		
 	}
 	
@@ -92,17 +92,17 @@ public class PartITests {
 		
 		runner.setAngle(45);
 		runner.setInitialVelocity(17.146);
-		Assert.assertTrue(runner.targetReached(30));
+		Assert.assertTrue(runner.targetReached(new Target(30,0)));
 		
 		
 		runner.setAngle(30);
 		runner.setInitialVelocity(18.425);
-		Assert.assertTrue(runner.targetReached(30));
+		Assert.assertTrue(runner.targetReached(new Target(30,0)));
 		
 		
 		runner.setAngle(45);
 		runner.setInitialVelocity(8.731);
-		Assert.assertFalse(runner.targetReached(30));
+		Assert.assertFalse(runner.targetReached(new Target(30,0)));
 		
 	}
 }

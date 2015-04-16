@@ -42,20 +42,22 @@ public class GameRunner {
 		return velocity;
 	}
 
-	public double getDistance() {
-		distance = (Math.pow(velocity, 2.0)*Math.sin(2*angle*Math.PI/180))/GRAVITY;
-		return distance;
+	public double getXDistance() {
+		return (Math.pow(velocity, 2.0)*Math.sin(2*angle*Math.PI/180))/GRAVITY;
+		
 	}
 	
 	public double distanceFromTarget(double target){
-		double result = Math.abs(getDistance()-target);
-		return result;
+		return Math.abs(getXDistance()-target);
+		
 	}
 
-	public boolean targetReached(double target) {
-		System.out.println(getDistance()-target);
-		if(Math.abs(getDistance()-target) < 0.1)
-			return true;
-		return false;
+	public boolean targetReached(Target target) {
+		
+		return (Math.abs(getXDistance()-target.getxCoor()) < 0.01);
+		
+	}
+	private void generateTarget(){
+		
 	}
 }
