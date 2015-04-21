@@ -112,6 +112,7 @@ public class PartITests {
 			
 			cannon.setAngle(45);
 			cannon.setVelocity(10);
+			
 			Assert.assertTrue(Math.abs(cannon.getXCoor(1.5)- 10.6066) < 0.0001);
 			
 			cannon.setAngle(35);
@@ -125,10 +126,12 @@ public class PartITests {
 					
 					cannon.setAngle(45);
 					cannon.setVelocity(10);
-					Assert.assertTrue(Math.abs(cannon.getYCoor(1.5)- 10.6066) < 0.0001);
+					System.out.println(cannon.getYCoor(1.25));
+					Assert.assertTrue(Math.abs(cannon.getYCoor(1.25)- 1.18258) < 0.0001);
 					
 					cannon.setAngle(35);
 					cannon.setVelocity(5);
-					Assert.assertTrue(Math.abs(cannon.getYCoor(2)- 5.73576) < 0.0001);
+					System.out.println(cannon.getYCoor(0.5));
+					Assert.assertTrue(Math.abs(cannon.getYCoor(0.5)- 0.20894) < 0.0001);
 				}
 }

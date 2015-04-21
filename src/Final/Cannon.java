@@ -2,7 +2,7 @@ package Final;
 
 public class Cannon {
 
-	private static double GRAVITY = 9.8;
+	private static double GRAVITY = -9.8;
 	private double xcoor;
 	private double ycoor;
 	private double angle;
@@ -23,10 +23,10 @@ public class Cannon {
 	}
 	
 	private void calcXPosition(double time){
-		//return (velocity*Math.cos(angle)*time);
+		xcoor = (velocity*Math.cos(angle*Math.PI/180)*time);
 	}
 	private void calcYPosition(double time){
-		//return ((velocity*Math.sin(angle)*time)+(GRAVITY*Math.pow(velocity,2.0)/2));
+		ycoor = ((velocity*Math.sin(angle*Math.PI/180)*time)+(GRAVITY*Math.pow(time,2.0)/2));
 	}
 	void fireProjectile(){
 		
@@ -38,9 +38,11 @@ public class Cannon {
 		return ycoor;
 	}
 	public double getXCoor(double time){
+		calcXPosition(time);
 		return xcoor;
 	}
 	public double getYCoor(double time){
+		calcYPosition(time);
 		return ycoor;
 	}
 	public double getAngle() {
