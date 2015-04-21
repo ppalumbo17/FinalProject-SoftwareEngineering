@@ -19,8 +19,8 @@ public class PartITests {
 	@BeforeClass
 	public static void setUp(){
 		runner = new GameRunner();
-		runner.createCannon();
-		runner.createTarget(30);
+		runner.createCannon(0, 0, 0, 0);
+		runner.createTarget(30, 0);
 	}
 	
 	

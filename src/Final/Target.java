@@ -2,24 +2,24 @@ package Final;
 
 public class Target {
 
-	private int xCoor;
-	private int yCoor;
+	private int xcoor;
+	private int ycoor;
 	
-	public Target(int xCoor, int yCoor){
-		this.xCoor = xCoor;
-		this.yCoor = yCoor;
+	public Target(int xcoor, int ycoor){
+		this.xcoor = xcoor;
+		this.ycoor = ycoor;
 	}
 	public int getxCoor() {
-		return xCoor;
+		return xcoor;
 	}
 	public void setxCoor(int xCoor) {
-		this.xCoor = xCoor;
+		this.xcoor = xCoor;
 	}
 	public int getyCoor() {
-		return yCoor;
+		return ycoor;
 	}
 	public void setyCoor(int yCoor) {
-		this.yCoor = yCoor;
+		this.ycoor = yCoor;
 	}
 	
 	

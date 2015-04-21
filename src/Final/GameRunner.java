@@ -5,19 +5,19 @@ public class GameRunner {
 
 	private static final double GRAVITY = 9.8;
 	private double angle, velocity, distance;
+	private Cannon cannon;
+	private Target target;
 	
 	void calcTrajectory(){
 		
 	}
 
-	public void createCannon() {
-		// TODO Auto-generated method stub
-		
+	public void createCannon(int xcoor, int ycoor, double angle, double velocity) {
+		cannon = new Cannon(xcoor, ycoor, angle, velocity);
 	}
 
-	public void createTarget(double x) {
-		// TODO Auto-generated method stub
-		
+	public void createTarget(int xcoor, int ycoor) {
+		target = new Target(xcoor, ycoor);
 	}
 
 	public double getAngle() {
