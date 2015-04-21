@@ -8,6 +8,13 @@ public class Cannon {
 	private double angle;
 	private double velocity;
 	
+	
+	public Cannon(){
+		this.xcoor = 0;
+		this.ycoor = 0;
+		this.angle = 0;
+		this.velocity = 0;
+	}
 	public Cannon(double xcoor, double ycoor, double angle, double velocity){
 		this.xcoor = xcoor;
 		this.ycoor = ycoor;
@@ -15,14 +22,26 @@ public class Cannon {
 		this.velocity = velocity;
 	}
 	
-	private double calcXPosition(double time){
-		return (velocity*Math.cos(angle)*time);
+	private void calcXPosition(double time){
+		//return (velocity*Math.cos(angle)*time);
 	}
-	private double calcYPosition(double time){
-		return ((velocity*Math.sin(angle)*time)+(GRAVITY*Math.pow(velocity,2.0)/2));
+	private void calcYPosition(double time){
+		//return ((velocity*Math.sin(angle)*time)+(GRAVITY*Math.pow(velocity,2.0)/2));
 	}
 	void fireProjectile(){
 		
+	}
+	public double getXCoor(){
+		return xcoor;
+	}
+	public double getYCoor(){
+		return ycoor;
+	}
+	public double getXCoor(double time){
+		return xcoor;
+	}
+	public double getYCoor(double time){
+		return ycoor;
 	}
 	public double getAngle() {
 		return angle;

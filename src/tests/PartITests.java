@@ -15,10 +15,11 @@ import Final.*;
 public class PartITests {
 	
 	private static GameRunner runner;
-	
+	private static Cannon cannon;
 	@BeforeClass
 	public static void setUp(){
 		runner = new GameRunner();
+		cannon = new Cannon();
 		runner.createCannon(0, 0, 0, 0);
 		runner.createTarget(30, 0);
 	}
@@ -105,4 +106,29 @@ public class PartITests {
 		Assert.assertFalse(runner.targetReached(new Target(30,0)));
 		
 	}
+	//Test projectile X position for cannon
+		@Test
+		public void testXCoor(){
+			
+			cannon.setAngle(45);
+			cannon.setVelocity(10);
+			Assert.assertTrue(Math.abs(cannon.getXCoor(1.5)- 10.6066) < 0.0001);
+			
+			cannon.setAngle(35);
+			cannon.setVelocity(5);
+			Assert.assertTrue(Math.abs(cannon.getXCoor(2)- 8.1915) < 0.0001);
+		}
+		
+		//Test projectile Y position for cannon
+				@Test
+				public void testYCoor(){
+					
+					cannon.setAngle(45);
+					cannon.setVelocity(10);
+					Assert.assertTrue(Math.abs(cannon.getYCoor(1.5)- 10.6066) < 0.0001);
+					
+					cannon.setAngle(35);
+					cannon.setVelocity(5);
+					Assert.assertTrue(Math.abs(cannon.getYCoor(2)- 5.73576) < 0.0001);
+				}
 }
