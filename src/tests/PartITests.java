@@ -16,10 +16,12 @@ public class PartITests {
 	
 	private static GameRunner runner;
 	private static Cannon cannon;
+	private static Projectile projectile;
 	@BeforeClass
 	public static void setUp(){
 		runner = new GameRunner();
 		cannon = new Cannon();
+		projectile = new Projectile();
 		runner.createCannon(0, 0, 0, 0);
 		runner.createTarget(30, 0);
 	}
@@ -107,31 +109,28 @@ public class PartITests {
 		
 	}
 	//Test projectile X position for cannon
-		@Test
-		public void testXCoor(){
-			
-			cannon.setAngle(45);
-			cannon.setVelocity(10);
-			
-			Assert.assertTrue(Math.abs(cannon.getXCoor(1.5)- 10.6066) < 0.0001);
-			
-			cannon.setAngle(35);
-			cannon.setVelocity(5);
-			Assert.assertTrue(Math.abs(cannon.getXCoor(2)- 8.1915) < 0.0001);
-		}
-		
-		//Test projectile Y position for cannon
-				@Test
-				public void testYCoor(){
-					
-					cannon.setAngle(45);
-					cannon.setVelocity(10);
-					System.out.println(cannon.getYCoor(1.25));
-					Assert.assertTrue(Math.abs(cannon.getYCoor(1.25)- 1.18258) < 0.0001);
-					
-					cannon.setAngle(35);
-					cannon.setVelocity(5);
-					System.out.println(cannon.getYCoor(0.5));
-					Assert.assertTrue(Math.abs(cannon.getYCoor(0.5)- 0.20894) < 0.0001);
-				}
+	@Test
+	public void testXCoor(){
+
+		projectile.setAngle(45);
+		projectile.setVelocity(10);
+		Assert.assertTrue(Math.abs(projectile.getXCoor(1.5)- 10.6066) < 0.0001);
+
+		projectile.setAngle(35);
+		projectile.setVelocity(5);
+		Assert.assertTrue(Math.abs(projectile.getXCoor(2)- 8.1915) < 0.0001);
+	}
+
+	//Test projectile Y position for cannon
+	@Test
+	public void testYCoor(){
+
+		projectile.setAngle(45);
+		projectile.setVelocity(10);
+		Assert.assertTrue(Math.abs(projectile.getYCoor(1.25)- 1.18258) < 0.0001);
+
+		projectile.setAngle(35);
+		projectile.setVelocity(5);
+		Assert.assertTrue(Math.abs(projectile.getYCoor(0.5)- 0.20894) < 0.0001);
+	}
 }
