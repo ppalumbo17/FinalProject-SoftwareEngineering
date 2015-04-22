@@ -21,7 +21,6 @@ public class GameRunner extends JFrame {
 	{
 		board = new Board(); 
 		control = new Control(this);
-		
 		prepareJFrame();
 	}
 	
