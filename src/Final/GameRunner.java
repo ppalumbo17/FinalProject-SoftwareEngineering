@@ -20,7 +20,7 @@ public class GameRunner extends JFrame {
 	public GameRunner()
 	{
 		board = new Board(); 
-		control = new Control();
+		control = new Control(this);
 		
 		prepareJFrame();
 	}
