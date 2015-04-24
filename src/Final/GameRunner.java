@@ -14,12 +14,16 @@ public class GameRunner extends JFrame {
 	private Control control;
 	private Cannon cannon;
 	private Target target;
-	private static final int WINDOW_WIDTH = 720; 
+	private TargetGenerator generator;
+	private static final int WINDOW_WIDTH = 900; 
 	private static final int WINDOW_HEIGHT = 640;
 	
 	public GameRunner()
 	{
-		board = new Board(); 
+		generator = new TargetGenerator(WINDOW_WIDTH / 2, 0, WINDOW_WIDTH / 2, WINDOW_HEIGHT);
+		cannon = new Cannon();
+		target = generator.createTarget();
+		board = new Board(cannon, target); 
 		control = new Control(this);
 		prepareJFrame();
 	}
@@ -29,19 +33,21 @@ public class GameRunner extends JFrame {
 		runner.createTarget(100, 0);
 		runner.setVisible(true);
 		
-		Scanner sc = new Scanner(System.in);
+		//runner.setAngle(15);
 		
-		System.out.println("The target is placed at (100,0) and the cannon at (0,0)\nEnter a starting velocity:");
-		double vel = sc.nextDouble();
+//		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Please enter a starting angle for the cannon:");
-		double ang = sc.nextDouble();
+//		System.out.println("The target is placed at (100,0) and the cannon at (0,0)\nEnter a starting velocity:");
+//		double vel = sc.nextDouble();
 		
-		runner.setAngle(ang);
-		runner.setInitialVelocity(vel);
-		runner.createCannon(0, 0, ang, vel);
+//		System.out.println("Please enter a starting angle for the cannon:");
+//		double ang = sc.nextDouble();
 		
-		System.out.println("The ball landed on the ground at coord (" + (double)Math.round(runner.getXDistance()*1000)/1000 + ",0)");
+//		runner.setAngle(ang);
+//		runner.setInitialVelocity(vel);
+//		runner.createCannon(0, 500, ang, vel);
+		
+//		System.out.println("The ball landed on the ground at coord (" + (double)Math.round(runner.getXDistance()*1000)/1000 + ",0)");
 	}
 	
 	
@@ -51,7 +57,7 @@ public class GameRunner extends JFrame {
 		setSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
 		setTitle("Cannon Firing Game for Victory");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		setResizable(false);
 		// menu 
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("File");
@@ -98,6 +104,9 @@ public class GameRunner extends JFrame {
 
 	public void setAngle(double i) {
 		angle = i;
+		cannon.setAngle(360-angle);
+		board.changeCannon(cannon);
+		board.repaint();
 	}
 
 	public void setInitialVelocity(double i) {

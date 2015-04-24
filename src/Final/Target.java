@@ -1,5 +1,7 @@
 package Final;
 
+import java.awt.Graphics2D;
+
 public class Target {
 
 	private int xcoor;
@@ -20,6 +22,10 @@ public class Target {
 	}
 	public void setyCoor(int yCoor) {
 		this.ycoor = yCoor;
+	}
+	public void draw(Graphics2D g) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

@@ -49,6 +49,16 @@ public class Control extends JPanel implements ActionListener {
 		}
 		if(e.getSource().equals(createCannon)){
 			initialVelocity.setText("test");
+			double atAngle = Double.parseDouble(angle.getText());
+			if (atAngle > 90 || atAngle < 0) 
+			{
+				
+				JOptionPane.showMessageDialog(null, "Please enter angle between 0 and 90 degrees.", "Error", JOptionPane.INFORMATION_MESSAGE);
+				return;
+			}
+			
+			game.setAngle(atAngle);
+			
 		}
 	}
 }
