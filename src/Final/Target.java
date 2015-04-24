@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 
 public class Target {
 
+	private static final int targetSize = 10;
+	
 	private int xcoor;
 	private int ycoor;
 	
@@ -24,8 +26,7 @@ public class Target {
 		this.ycoor = yCoor;
 	}
 	public void draw(Graphics2D g) {
-		// TODO Auto-generated method stub
-		
+		g.fillOval(xcoor, ycoor, targetSize, targetSize);
 	}
 	
 	

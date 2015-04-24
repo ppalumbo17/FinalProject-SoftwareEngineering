@@ -16,6 +16,8 @@ public class Control extends JPanel implements ActionListener {
 	private static final int CONTROL_WIDTH = 720;
 	private static final int CONTROL_HEIGHT = 200;
 	
+	private boolean canSetTarget = false;
+	
 	private GameRunner game;
 	
 	public Control(GameRunner game)
@@ -42,10 +44,22 @@ public class Control extends JPanel implements ActionListener {
 		setVisible(true);
 	}
 
+	public void setTargetCondition(boolean b)
+	{
+		canSetTarget = b;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(setNewTarget)){
 			initialVelocity.setText("test");
+			
+			if (canSetTarget)
+			{
+				game.setNextTarget();
+				canSetTarget = false;
+			}
+			
 		}
 		if(e.getSource().equals(createCannon)){
 			initialVelocity.setText("test");

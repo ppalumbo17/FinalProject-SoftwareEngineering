@@ -3,6 +3,7 @@ package Final;
 import java.awt.*;
 import java.awt.event.*;
 import java.lang.Math;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.*;
@@ -14,16 +15,20 @@ public class GameRunner extends JFrame {
 	private Control control;
 	private Cannon cannon;
 	private Target target;
+	private ArrayList<Target> targetList;
 	private TargetGenerator generator;
 	private static final int WINDOW_WIDTH = 900; 
 	private static final int WINDOW_HEIGHT = 640;
+	private static final int TARGET_COUNT = 5;
+	private int targetCount;
 	
 	public GameRunner()
 	{
 		generator = new TargetGenerator(WINDOW_WIDTH / 2, 0, WINDOW_WIDTH / 2, WINDOW_HEIGHT);
 		cannon = new Cannon();
-		target = generator.createTarget();
-		board = new Board(cannon, target); 
+		targetList = generateTargets(TARGET_COUNT);
+		targetCount = 0;
+		board = new Board(cannon, targetList.get(targetCount)); 
 		control = new Control(this);
 		prepareJFrame();
 	}
@@ -32,6 +37,8 @@ public class GameRunner extends JFrame {
 		GameRunner runner = new GameRunner();
 		runner.createTarget(100, 0);
 		runner.setVisible(true);
+		
+		
 		
 		//runner.setAngle(15);
 		
@@ -86,9 +93,7 @@ public class GameRunner extends JFrame {
 
 		exitItem.addActionListener(new MenuItemListener());
 		return exitItem;
-	}
-
-	
+	}	
 
 	public void createCannon(int xcoor, int ycoor, double angle, double velocity) {
 		cannon = new Cannon(xcoor, ycoor, angle, velocity);
@@ -131,7 +136,21 @@ public class GameRunner extends JFrame {
 		return (Math.abs(getXDistance()-target.getxCoor()) < 0.01);
 		
 	}
-	private void generateTarget(){
+	
+	public ArrayList<Target> generateTargets(int amount){
+		ArrayList<Target> tempList = new ArrayList<Target>();
 		
+		for (int i = 0; i < amount; i++)
+		{
+			tempList.add(generator.createTarget());
+		}
+		
+		return tempList;
+	}
+
+	public void setNextTarget() {
+		targetCount++;
+		board.changeTarget(targetList.get(targetCount));
+		board.repaint();
 	}
 }
