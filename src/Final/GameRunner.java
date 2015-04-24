@@ -39,7 +39,6 @@ public class GameRunner extends JFrame {
 		runner.setVisible(true);
 		
 		
-		
 		//runner.setAngle(15);
 		
 //		Scanner sc = new Scanner(System.in);
