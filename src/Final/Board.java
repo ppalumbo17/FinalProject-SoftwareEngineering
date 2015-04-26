@@ -10,6 +10,7 @@ public class Board extends JPanel {
 
 	private Cannon cannon;
 	private Target target;
+	private Projectile projectile;
 	// private ArrayList<Target> targetList;
 	
 	private Graphics2D graphics;
@@ -29,9 +30,25 @@ public class Board extends JPanel {
 		this.cannon = cannon;
 	}
 	
+	public Cannon getCannon()
+	{
+		return cannon;
+	}
+	
 	public void changeTarget(Target target)
 	{
 		this.target = target;
+	}
+	
+	public Target getTarget()
+	{
+		return target;
+	}
+	
+	public void createProjectile(Projectile projectile)
+	{
+		this.projectile = projectile;
+		
 	}
 	
 	public void paintComponent(Graphics g)
@@ -40,7 +57,18 @@ public class Board extends JPanel {
 		cannon.draw((Graphics2D) g);
 		
 		target.draw((Graphics2D) g);
-			
+		
+		try {
+			projectile.draw(g);
+		} catch (NullPointerException e) {
+			return;
+		}
+		
+		// g.setColor(Color.black);
+		//g.fillRect(100, 20, 900-100- 20, 500 - 20);
+	}
+
+	private void drawTrajectory() {
 		
 	}
 }

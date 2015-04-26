@@ -1,12 +1,18 @@
 package Final;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 public class Projectile {
 
 	private static double GRAVITY = 9.8;
-	private double angle, velocity, xcoor, ycoor;
+	private static int SIZE = 10;
+	private double angle, velocity, xcoor, ycoor, xInit, yInit;
 	
 	public Projectile(int xCoor, int yCoor, double angle, double velocity) {
 		
+		xInit = xCoor/10;
+		yInit = yCoor/10;
 		this.xcoor = xCoor;
 		this.ycoor = yCoor;
 		this.angle = angle;
@@ -14,6 +20,8 @@ public class Projectile {
 	}
 
 	public Projectile() {
+		xInit = 0;
+		yInit = 0;
 		this.xcoor = 0;
 		this.ycoor = 0;
 		this.angle = 45;
@@ -21,10 +29,10 @@ public class Projectile {
 	}
 
 	private void calcXPosition(double time){
-		xcoor = (velocity*Math.cos(angle*Math.PI/180)*time);
+		xcoor = xInit + (velocity*Math.cos(angle*Math.PI/180)*time);
 	}
 	private void calcYPosition(double time){
-		ycoor = ((velocity*Math.sin(angle*Math.PI/180)*time)-(GRAVITY*Math.pow(time,2.0)/2));
+		ycoor =   yInit + ((-velocity*Math.sin(angle*Math.PI/180)*time)+(GRAVITY*Math.pow(time,2.0)/2));
 	}
 	public double getXCoor(double time){
 		calcXPosition(time);
@@ -34,7 +42,6 @@ public class Projectile {
 		calcYPosition(time);
 		return ycoor;
 	}
-	
 	
 	public void setVelocity(double v){
 		this.velocity = v;
@@ -56,6 +63,10 @@ public class Projectile {
 
 	public void setyCoor(int yCoor) {
 		this.ycoor = yCoor;
+	}
+	public void draw(Graphics g){
+		g.setColor(Color.green);
+		g.fillOval((int)Math.round(xcoor*10), (int)Math.round(ycoor*10), SIZE, SIZE);
 	}
 	
 }

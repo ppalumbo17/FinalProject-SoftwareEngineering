@@ -1,10 +1,11 @@
 package Final;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class Target {
 
-	private static final int targetSize = 10;
+	public static final int TARGET_SIZE = 20;
 	
 	private int xcoor;
 	private int ycoor;
@@ -26,7 +27,8 @@ public class Target {
 		this.ycoor = yCoor;
 	}
 	public void draw(Graphics2D g) {
-		g.fillOval(xcoor, ycoor, targetSize, targetSize);
+		g.setColor(Color.RED);
+		g.fillOval(xcoor, ycoor, TARGET_SIZE, TARGET_SIZE);
 	}
 	
 	

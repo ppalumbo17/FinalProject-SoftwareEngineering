@@ -11,13 +11,14 @@ public class Cannon {
 	private double angle;
 	private double velocity;
 	private double theta; 
+	private int tipX, tipY;
 	
 	private static final int width = 150;
 	private static final int height = 15;
 	
 	public Cannon(){
-		this.xcoor = 150;
-		this.ycoor = 390;
+		this.xcoor = 40;
+		this.ycoor = 490;
 		this.angle = 0;
 		this.velocity = 0;
 		theta = Math.toRadians(angle);
@@ -44,11 +45,26 @@ public class Cannon {
 		Rectangle2D rect = new Rectangle2D.Double(-width / 2 + 15, -height / 2, width, height);
 		Shape rotatedRect = transform.createTransformedShape(rect);
 		g.fill(rotatedRect);
-		g.draw(rotatedRect);		
+		g.draw(rotatedRect);	
+		
+		setTipCoordinates(rotatedRect);
+		
 	}
 	
-	void fireProjectile(){
+	private void setTipCoordinates(Shape rotatedRect) {
 		
+		
+		tipX = (int) (rotatedRect.getBounds2D().getX() + rotatedRect.getBounds2D().getWidth());
+		tipY = (int) (rotatedRect.getBounds2D().getY());
+	}
+	
+	
+	
+	public int getTipX() {
+		return tipX;
+	}
+	public int getTipY() {
+		return tipY;
 	}
 	public double getXCoor(){
 		return xcoor;
