@@ -166,11 +166,16 @@ public class GameRunner extends JFrame {
 	}
 
 	//NEEDS WORK
-	public void setNextTarget() {
+	public void setNextTarget()  {
 		targetCount++;
-		target=targetList.get(targetCount);
-		board.changeTarget(target);
-		board.repaint();
+		if (targetCount != TARGET_COUNT){
+			target=targetList.get(targetCount);
+			board.changeTarget(target);
+			board.repaint();
+		}
+		else{
+			displayEndResult();
+		}
 	}
 
 	void fireProjectile(){
@@ -220,7 +225,10 @@ public class GameRunner extends JFrame {
 			shootHelper();
 		}
 	}
-	
+	public void displayEndResult(){
+		JOptionPane.showMessageDialog(null, "You completed " + Control.numTargets + " of the " + TARGET_COUNT + " targets \nwith a score of " + Control.realScore + " Good Job!", "Victory!",JOptionPane.INFORMATION_MESSAGE);
+		dispose();
+	}
 	private void shootHelper() {
 		double currentTime = timerCount * 0.01;
 		projectile.getXCoor(currentTime);
@@ -244,12 +252,11 @@ public class GameRunner extends JFrame {
 				cannonCount = 0;
 			}
 			else{
-				JOptionPane.showMessageDialog(null, "You completed " + Control.numTargets + " of the " + TARGET_COUNT + " targets \nWith a score of " + Control.realScore + " Good Job!", "Victory!",JOptionPane.INFORMATION_MESSAGE);
-				dispose();
+				displayEndResult();
 			}
 		}
-		if (projectile.getXCoor()*10 > WINDOW_WIDTH) {
-			//JOptionPane.showMessageDialog(null, "You've gone too far!", "Out Of Bounds", JOptionPane.INFORMATION_MESSAGE);
+		if (projectile.getXCoor()*10 > WINDOW_WIDTH || projectile.getYCoor()*10 > WINDOW_HEIGHT) {
+			JOptionPane.showMessageDialog(null, "You've gone too far!", "Out Of Bounds", JOptionPane.INFORMATION_MESSAGE);
 			timer.stop();
 		}
 	}

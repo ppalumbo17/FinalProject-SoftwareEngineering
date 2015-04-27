@@ -125,7 +125,7 @@ public class Control extends JPanel implements ActionListener {
 		if(e.getSource().equals(endGameButton)){
 
 			board.clearTrajectory();
-			JOptionPane.showMessageDialog(null, "You completed " + numTargets + " of the " + NUM_TARGETS + " targets \nWith a score of " + realScore + ". Good Job!", "Victory!",JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "You completed " + numTargets + " of the " + NUM_TARGETS + " targets \nwith a score of " + realScore + ". Good Job!", "Victory!",JOptionPane.INFORMATION_MESSAGE);
 			game.dispose();
 		}
 		
