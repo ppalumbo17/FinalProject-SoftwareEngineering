@@ -12,6 +12,7 @@ public class Cannon {
 	private double velocity;
 	private double theta; 
 	private int tipX, tipY;
+	private Shape shape;
 	
 	private static final int width = 150;
 	private static final int height = 15;
@@ -47,15 +48,21 @@ public class Cannon {
 		g.fill(rotatedRect);
 		g.draw(rotatedRect);	
 		
+		shape = rotatedRect;
+		
 		setTipCoordinates(rotatedRect);
 		
 	}
 	
-	private void setTipCoordinates(Shape rotatedRect) {
+	public Shape getShape() {
+		return shape;
+	}
+	public void setTipCoordinates(Shape rotatedRect) {
 		
 		
 		tipX = (int) (rotatedRect.getBounds2D().getX() + rotatedRect.getBounds2D().getWidth());
 		tipY = (int) (rotatedRect.getBounds2D().getY());
+		System.out.println(tipX + " setTip " + tipY);
 	}
 	
 	

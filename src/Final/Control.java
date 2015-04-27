@@ -22,7 +22,7 @@ public class Control extends JPanel implements ActionListener {
 	private static final int CONTROL_HEIGHT = 200;
 
 	private boolean canSetTarget = false;
-
+	private double initVelocity;
 	private GameRunner game;
 	private Board board;
 
@@ -116,6 +116,57 @@ public class Control extends JPanel implements ActionListener {
 		realScore += points;
 		score.setText("" + realScore);
 	}
+	
+	public void endGameClicked(){
+		board.clearTrajectory();
+		JOptionPane.showMessageDialog(null, "You completed " + numTargets + " of the " + NUM_TARGETS + " targets \nwith a score of " + realScore + ". Good Job!", "Victory!",JOptionPane.INFORMATION_MESSAGE);
+		game.dispose();
+	}
+	
+	public void drawCannonClicked(){
+		distanceFromTarget.setText("cannon click");
+		double atAngle;
+
+		try
+		{
+			atAngle = Double.parseDouble(angle.getText());
+		}
+
+		catch (NumberFormatException exception)
+		{
+			JOptionPane.showMessageDialog(null, "Please enter an angle between 0 and 90 degrees.", "Error", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+
+		if (atAngle > 90 || atAngle < 0) 
+		{
+
+			JOptionPane.showMessageDialog(null, "Please enter an angle between 0 and 90 degrees.", "Error", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+
+		game.setAngle(atAngle);
+	}
+	
+	public void fireCannonClicked(){
+		try 
+		{
+			initVelocity = Double.parseDouble(initialVelocity.getText());
+		}
+
+		catch (NumberFormatException exception)
+		{
+			JOptionPane.showMessageDialog(null, "Please enter a positive number value for velocity", "Error", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		
+		if (initVelocity < 0) 
+		{
+
+			JOptionPane.showMessageDialog(null, "Please enter a positive number value for velocity", "Error", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+	}
 	// public void
 	
 	@Override
@@ -123,62 +174,23 @@ public class Control extends JPanel implements ActionListener {
 
 
 		if(e.getSource().equals(endGameButton)){
-
-			board.clearTrajectory();
-			JOptionPane.showMessageDialog(null, "You completed " + numTargets + " of the " + NUM_TARGETS + " targets \nwith a score of " + realScore + ". Good Job!", "Victory!",JOptionPane.INFORMATION_MESSAGE);
-			game.dispose();
+			endGameClicked();
+			
 		}
 		
-		if(e.getSource().equals(createCannon) || e.getSource().equals(fireCannon)) {
-
-			distanceFromTarget.setText("cannon click");
-			double atAngle;
-
-			try
-			{
-				atAngle = Double.parseDouble(angle.getText());
-			}
-
-			catch (NumberFormatException exception)
-			{
-				JOptionPane.showMessageDialog(null, "Please enter an angle between 0 and 90 degrees.", "Error", JOptionPane.INFORMATION_MESSAGE);
-				return;
-			}
-
-			if (atAngle > 90 || atAngle < 0) 
-			{
-
-				JOptionPane.showMessageDialog(null, "Please enter an angle between 0 and 90 degrees.", "Error", JOptionPane.INFORMATION_MESSAGE);
-				return;
-			}
-
-			game.setAngle(atAngle);
+		if(e.getSource().equals(createCannon)) {
+			drawCannonClicked();
+			
 		}
 
 		if(e.getSource().equals(fireCannon))
 		{	
-			double initVelocity;
+			drawCannonClicked();
 			
-			try 
-			{
-				initVelocity = Double.parseDouble(initialVelocity.getText());
-			}
-
-			catch (NumberFormatException exception)
-			{
-				JOptionPane.showMessageDialog(null, "Please enter a positive number value for velocity", "Error", JOptionPane.INFORMATION_MESSAGE);
-				return;
-			}
+			fireCannonClicked();
 			
-			if (initVelocity < 0) 
-			{
-
-				JOptionPane.showMessageDialog(null, "Please enter a positive number value for velocity", "Error", JOptionPane.INFORMATION_MESSAGE);
-				return;
-			}
-
 			game.setInitialVelocity(initVelocity);
-			board.repaint();
+			// board.repaint();
 			game.fireProjectile();
 			shots.setText(""+ game.getShotsTaken());
 			distanceFromTarget.setText("Fire");//+game.getDistance()+ " meters");	

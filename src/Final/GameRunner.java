@@ -120,7 +120,7 @@ public class GameRunner extends JFrame {
 		angle = i;
 		cannon.setAngle(360-angle);
 		board.changeCannon(cannon);
-		board.repaint();
+		//board.repaint();
 	}
 
 	public void setInitialVelocity(double i) {
@@ -194,15 +194,17 @@ public class GameRunner extends JFrame {
 		}
 		calcTotalTime();
 		//board.repaint();
+		System.out.println(cannon.getTipX() + " fire " +cannon.getTipY());
 		projectile = new Projectile(cannon.getTipX(), cannon.getTipY(), angle, initialVelocity);
 		
 		board.createProjectile(projectile);
-		board.repaint();
+		//board.repaint();
 		// if (timer != null) timer.stop();
 		// timer = new Timer(10, new TimerListener());
 		timerCount = 0;
 		timer.start();
 		shotsTaken++;
+		
 		
 	}
 	
