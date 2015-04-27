@@ -25,23 +25,26 @@ public class GameRunner extends JFrame {
 	private static final double GRAVITY = 9.8;
 	private static final int WINDOW_WIDTH = 900; 
 	private static final int WINDOW_HEIGHT = 640;
-	private static final int TARGET_COUNT = 5;
+	private static final int TARGET_COUNT = 2;
 	private int targetCount;
 
 	public GameRunner()
 	{
-		generator = new TargetGenerator(WINDOW_WIDTH / 2, Target.TARGET_SIZE, WINDOW_WIDTH / 2 - Target.TARGET_SIZE, WINDOW_HEIGHT - Target.TARGET_SIZE);
+		generator = new TargetGenerator(WINDOW_WIDTH / 2, Target.TARGET_SIZE, WINDOW_WIDTH / 2 - Target.TARGET_SIZE, WINDOW_HEIGHT / 2 - Target.TARGET_SIZE);
 		cannon = new Cannon();
 		targetList = generateTargets(TARGET_COUNT);
 		targetCount = 0;
-		board = new Board(cannon, targetList.get(targetCount)); 
-		control = new Control(this, null);
+		target =  targetList.get(targetCount);
+		board = new Board(cannon, target); 
+		control = new Control(this, board);
+		timer = new Timer(10, new TimerListener());
+		
 		prepareJFrame();
 	}
 
 	public static void main(String[] args){
 		GameRunner runner = new GameRunner();
-		runner.createTarget(100, 0);
+		// runner.createTarget(100, 0);
 		runner.setVisible(true);
 
 
@@ -121,7 +124,6 @@ public class GameRunner extends JFrame {
 
 	public void setInitialVelocity(double i) {
 		initialVelocity = i;
-
 	}
 
 	public double getInitialVelocity() {
@@ -155,17 +157,19 @@ public class GameRunner extends JFrame {
 
 	public void setNextTarget() {
 		targetCount++;
-		board.changeTarget(targetList.get(targetCount));
+		target=targetList.get(targetCount);
+		board.changeTarget(target);
 		board.repaint();
 	}
 
 	void fireProjectile(){
 		calcTotalTime();
+		board.repaint();
 		projectile = new Projectile(cannon.getTipX(), cannon.getTipY(), angle, initialVelocity);
 		board.createProjectile(projectile);
-		board.repaint();
-		timer = new Timer(10, new TimerListener());
-		
+		// if (timer != null) timer.stop();
+		// timer = new Timer(10, new TimerListener());
+		timerCount = 0;
 		timer.start();
 	}
 	
@@ -189,6 +193,23 @@ public class GameRunner extends JFrame {
 		double currentTime = timerCount * 0.01;
 		projectile.getXCoor(currentTime);
 		projectile.getYCoor(currentTime);
+		
+		double xcenter=(projectile.getXCoor()*10)+5;
+		double ycenter=(projectile.getYCoor()*10)+5;
+		if(timerCount % 5 == 0){
+			board.drawDot(projectile.getXCoor() * 10,projectile.getYCoor() * 10);
+		}
+		if(target.contains(xcenter,ycenter)){
+			JOptionPane.showMessageDialog(null, (TARGET_COUNT - targetCount) + "more to go!", "NEXT TARGET DISPLAYED",JOptionPane.PLAIN_MESSAGE);
+			timer.stop();
+			
+			if (targetCount < TARGET_COUNT) setNextTarget();
+			else JOptionPane.showMessageDialog(null, "You win!", "Victory!",JOptionPane.INFORMATION_MESSAGE);
+		}
+		if (projectile.getXCoor()*10 > WINDOW_WIDTH) {
+			System.out.println("hit edge");
+			timer.stop();
+		}
 	}
 	
 }

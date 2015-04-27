@@ -11,7 +11,7 @@ public class Control extends JPanel implements ActionListener {
 	private JTextField angle;
 	private JTextField initialVelocity;
 	private JTextField distanceFromTarget;
-	private JButton setNewTarget, createCannon, fireCannon;
+	private JButton clearTrajectoryButton, createCannon, fireCannon;
 
 	private static final int CONTROL_WIDTH = 720;
 	private static final int CONTROL_HEIGHT = 200;
@@ -30,7 +30,7 @@ public class Control extends JPanel implements ActionListener {
 
 		// create buttons
 		createCannon = new JButton("Draw Cannon");
-		setNewTarget = new JButton("Create new Target!");
+		clearTrajectoryButton = new JButton("Clear Trajectory Markers");
 		fireCannon = new JButton("Fire!");
 
 		// create text fields
@@ -39,7 +39,7 @@ public class Control extends JPanel implements ActionListener {
 		distanceFromTarget = new JTextField();
 
 		// setup action listeners for buttons
-		setNewTarget.addActionListener(this);
+		clearTrajectoryButton.addActionListener(this);
 		createCannon.addActionListener(this);
 		fireCannon.addActionListener(this);
 
@@ -49,12 +49,12 @@ public class Control extends JPanel implements ActionListener {
 		add(angle);
 		add(fireCannon);
 		add(new JLabel("Initial Velocity:"));
-		initialVelocity.setText("50");
+		initialVelocity.setText("30");
 		add(initialVelocity);
 		add(createCannon);
 		add(new JLabel("Distance from Target:"));
 		add(distanceFromTarget);
-		add(setNewTarget);
+		add(clearTrajectoryButton);
 
 		// change settings for panels
 		distanceFromTarget.setEditable(false);
@@ -72,15 +72,9 @@ public class Control extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 
-		if(e.getSource().equals(setNewTarget)){
+		if(e.getSource().equals(clearTrajectoryButton)){
 
-			distanceFromTarget.setText("target click");
-
-			if (canSetTarget)
-			{
-				game.setNextTarget();
-				canSetTarget = false;
-			}	
+			board.clearTrajectory();
 		}
 		
 		if(e.getSource().equals(createCannon) || e.getSource().equals(fireCannon)) {
@@ -100,8 +94,6 @@ public class Control extends JPanel implements ActionListener {
 				return;
 			}
 
-
-
 			if (atAngle > 90 || atAngle < 0) 
 			{
 
@@ -114,8 +106,6 @@ public class Control extends JPanel implements ActionListener {
 
 		if(e.getSource().equals(fireCannon))
 		{	
-
-			
 			double initVelocity; 
 			
 			try 
@@ -137,11 +127,9 @@ public class Control extends JPanel implements ActionListener {
 			}
 
 			game.setInitialVelocity(initVelocity);
+			board.repaint();
 			game.fireProjectile();
-			distanceFromTarget.setText("fire cannon click");
-			
+			distanceFromTarget.setText("fire cannon click");	
 		}
-
-
 	}
 }

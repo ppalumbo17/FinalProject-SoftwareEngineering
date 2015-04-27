@@ -64,6 +64,7 @@ public class Projectile {
 	public void setyCoor(int yCoor) {
 		this.ycoor = yCoor;
 	}
+	
 	public void draw(Graphics g){
 		g.setColor(Color.green);
 		g.fillOval((int)Math.round(xcoor*10), (int)Math.round(ycoor*10), SIZE, SIZE);
