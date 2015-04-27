@@ -15,7 +15,7 @@ public class Control extends JPanel implements ActionListener {
 	private static JTextField targetsHit, score;
 	private int totalShots;
 	public static int numTargets, realScore;
-	private JButton clearTrajectoryButton, createCannon, fireCannon;
+	private JButton endGameButton, createCannon, fireCannon;
 
 	private static final int NUM_TARGETS = 5;
 	private static final int CONTROL_WIDTH = 720;
@@ -35,7 +35,7 @@ public class Control extends JPanel implements ActionListener {
 
 		// create buttons
 		createCannon = new JButton("Draw Cannon");
-		clearTrajectoryButton = new JButton("Clear Trajectory Markers");
+		endGameButton = new JButton("End Game");
 		fireCannon = new JButton("Fire!");
 
 		// create text fields
@@ -55,7 +55,7 @@ public class Control extends JPanel implements ActionListener {
 		targetsHit.setText("0");
 		
 		// setup action listeners for buttons
-		clearTrajectoryButton.addActionListener(this);
+		endGameButton.addActionListener(this);
 		createCannon.addActionListener(this);
 		fireCannon.addActionListener(this);
 		
@@ -69,7 +69,7 @@ public class Control extends JPanel implements ActionListener {
 		panel3.setLayout(new GridLayout(1,2));
 		
 		
-		panel1.add(new JLabel("Shots"));
+		panel1.add(new JLabel("Total Shots"));
 		panel1.add(shots);
 		panel2.add(new JLabel("Targets Hit"));
 		panel2.add(targetsHit);
@@ -96,7 +96,7 @@ public class Control extends JPanel implements ActionListener {
 		add(createCannon);
 		add(new JLabel("Distance from Target:"));
 		add(distanceFromTarget);
-		add(clearTrajectoryButton);
+		add(endGameButton);
 
 		// change settings for panels
 		distanceFromTarget.setEditable(false);
@@ -122,9 +122,11 @@ public class Control extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 
-		if(e.getSource().equals(clearTrajectoryButton)){
+		if(e.getSource().equals(endGameButton)){
 
 			board.clearTrajectory();
+			JOptionPane.showMessageDialog(null, "You completed " + numTargets + " of the " + NUM_TARGETS + " targets \nWith a score of " + realScore + ". Good Job!", "Victory!",JOptionPane.INFORMATION_MESSAGE);
+			game.dispose();
 		}
 		
 		if(e.getSource().equals(createCannon) || e.getSource().equals(fireCannon)) {
