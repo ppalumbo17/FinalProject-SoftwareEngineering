@@ -12,7 +12,7 @@ public class GameRunner extends JFrame {
 
 	private double angle, initialVelocity, distance;
 	private double totalTime;
-	private int timerCount;
+	private int timerCount, shotsTaken;
 	private Board board;
 	private Control control;
 	private Cannon cannon;
@@ -22,10 +22,11 @@ public class GameRunner extends JFrame {
 	private TargetGenerator generator;
 	private Timer timer;
 	
+	public static int cannonCount;
 	private static final double GRAVITY = 9.8;
 	private static final int WINDOW_WIDTH = 900; 
-	private static final int WINDOW_HEIGHT = 640;
-	private static final int TARGET_COUNT = 2;
+	private static final int WINDOW_HEIGHT = 670;
+	private static final int TARGET_COUNT = 5;
 	private int targetCount;
 
 	public GameRunner()
@@ -130,17 +131,26 @@ public class GameRunner extends JFrame {
 		return initialVelocity;
 	}
 
-	public double getXDistance() {
+	public double getDistance() {
 		return (Math.pow(initialVelocity, 2.0)*Math.sin(2*angle*Math.PI/180))/GRAVITY;
 	}
+	public int getShotsTaken(){
+		return shotsTaken;
+	}
 
-	public double distanceFromTarget(double target){
-		return Math.abs(getXDistance() - target);
+	//NEEDS WORK
+	public double distanceFromTarget(){
+		/*System.out.println("X: " + target.getxCoor());
+		System.out.println("Y: " + target.getyCoor());
+		System.out.println("XP: " + projectile.getXCoor(initialVelocity/GRAVITY));
+		System.out.println("YP: " + projectile.getYCoor(initialVelocity/GRAVITY));
+		return (Math.abs(Math.sqrt((Math.pow(projectile.getXCoor(initialVelocity/GRAVITY)-target.getxCoor(), 2)+Math.pow(projectile.getYCoor(initialVelocity/GRAVITY) - target.getyCoor(), 2)))))/10;*/
+		return 0;
 	}
 
 	public boolean targetReached(Target target) {
 
-		return (Math.abs(getXDistance() - target.getxCoor()) < 0.01);
+		return (Math.abs(getDistance() - target.getxCoor()) < 0.01);
 
 	}
 
@@ -163,16 +173,37 @@ public class GameRunner extends JFrame {
 	}
 
 	void fireProjectile(){
+		
+		if(cannonCount < 3){
+			cannonCount++;
+			board.clearTrajectory();
+			
+		}
+		else{
+			JOptionPane.showMessageDialog(null, "You've fired your alotted number of shots for this target", "New Target Incoming", JOptionPane.PLAIN_MESSAGE);
+			board.clearTrajectory();
+			setNextTarget();
+			cannonCount = 0;
+			return;
+		}
 		calcTotalTime();
-		board.repaint();
+		//board.repaint();
 		projectile = new Projectile(cannon.getTipX(), cannon.getTipY(), angle, initialVelocity);
+		
 		board.createProjectile(projectile);
+		board.repaint();
 		// if (timer != null) timer.stop();
 		// timer = new Timer(10, new TimerListener());
 		timerCount = 0;
 		timer.start();
+		shotsTaken++;
+		
 	}
 	
+	public Cannon getCannon() {
+		return cannon;
+	}
+
 	private void calcTotalTime() {
 		totalTime = 2 * initialVelocity * Math.sin(Math.toRadians(angle)) / GRAVITY;
 	}
@@ -200,14 +231,21 @@ public class GameRunner extends JFrame {
 			board.drawDot(projectile.getXCoor() * 10,projectile.getYCoor() * 10);
 		}
 		if(target.contains(xcenter,ycenter)){
-			JOptionPane.showMessageDialog(null, (TARGET_COUNT - targetCount) + "more to go!", "NEXT TARGET DISPLAYED",JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Good Job! You hit the target in just " + (cannonCount) + " tries!", "NEXT TARGET DISPLAYED",JOptionPane.PLAIN_MESSAGE);
 			timer.stop();
+			board.clearTrajectory();
+			Control.setTargetsHit();
+			Control.setScore((40 - (10*cannonCount)));
 			
-			if (targetCount < TARGET_COUNT) setNextTarget();
-			else JOptionPane.showMessageDialog(null, "You win!", "Victory!",JOptionPane.INFORMATION_MESSAGE);
+			//NEEDS WORK
+			if (targetCount < TARGET_COUNT && (targetCount + (shotsTaken/3) != TARGET_COUNT)){
+				setNextTarget();
+				cannonCount = 0;
+			}
+			else JOptionPane.showMessageDialog(null, "You completed " + Control.numTargets + " of the " + TARGET_COUNT + " targets!  Good Job!", "Victory!",JOptionPane.INFORMATION_MESSAGE);
 		}
 		if (projectile.getXCoor()*10 > WINDOW_WIDTH) {
-			System.out.println("hit edge");
+			//JOptionPane.showMessageDialog(null, "You've gone too far!", "Out Of Bounds", JOptionPane.INFORMATION_MESSAGE);
 			timer.stop();
 		}
 	}

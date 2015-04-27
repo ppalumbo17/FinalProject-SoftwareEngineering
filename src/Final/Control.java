@@ -11,8 +11,13 @@ public class Control extends JPanel implements ActionListener {
 	private JTextField angle;
 	private JTextField initialVelocity;
 	private JTextField distanceFromTarget;
+	private JTextField shots;
+	private static JTextField targetsHit, score;
+	private int totalShots;
+	public static int numTargets, realScore;
 	private JButton clearTrajectoryButton, createCannon, fireCannon;
 
+	private static final int NUM_TARGETS = 5;
 	private static final int CONTROL_WIDTH = 720;
 	private static final int CONTROL_HEIGHT = 200;
 
@@ -26,7 +31,7 @@ public class Control extends JPanel implements ActionListener {
 		this.game = game;
 		this.board = board;
 
-		setLayout(new GridLayout(3,3));
+		setLayout(new GridLayout(4,3));
 
 		// create buttons
 		createCannon = new JButton("Draw Cannon");
@@ -37,13 +42,50 @@ public class Control extends JPanel implements ActionListener {
 		angle = new JTextField();
 		initialVelocity = new JTextField();
 		distanceFromTarget = new JTextField();
-
+		score = new JTextField();
+		shots = new JTextField();
+		targetsHit = new JTextField();
+		
+		score.setEditable(false);
+		shots.setEditable(false);
+		targetsHit.setEditable(false);
+		
+		score.setText("0");
+		shots.setText("0");
+		targetsHit.setText("0");
+		
 		// setup action listeners for buttons
 		clearTrajectoryButton.addActionListener(this);
 		createCannon.addActionListener(this);
 		fireCannon.addActionListener(this);
-
+		
+		//Create Panels and add to them
+		JPanel panel1 = new JPanel();
+		JPanel panel2 = new JPanel();
+		JPanel panel3 = new JPanel();
+		
+		panel1.setLayout(new GridLayout(1,2));
+		panel2.setLayout(new GridLayout(1,2));
+		panel3.setLayout(new GridLayout(1,2));
+		
+		
+		panel1.add(new JLabel("Shots"));
+		panel1.add(shots);
+		panel2.add(new JLabel("Targets Hit"));
+		panel2.add(targetsHit);
+		panel3.add(new JLabel("Score"));
+		panel3.add(score);
+		
+		//panel1.setBackground(new Color(56,154,224));
+		//panel2.setBackground(new Color(56,154,224));
+		//panel3.setBackground(new Color(56,154,224));
+		
+		
+		
 		// add buttons and fields to control panel
+		add(panel1);
+		add(panel2);
+		add(panel3);
 		add(new JLabel("Angle"));
 		angle.setText("0");
 		add(angle);
@@ -66,6 +108,14 @@ public class Control extends JPanel implements ActionListener {
 		canSetTarget = b;
 	}
 
+	public static void setTargetsHit(){
+		numTargets++;
+		targetsHit.setText("" + numTargets + " / "+ NUM_TARGETS);
+	}
+	public static void setScore(int points){
+		realScore += points;
+		score.setText("" + realScore);
+	}
 	// public void
 	
 	@Override
@@ -80,7 +130,6 @@ public class Control extends JPanel implements ActionListener {
 		if(e.getSource().equals(createCannon) || e.getSource().equals(fireCannon)) {
 
 			distanceFromTarget.setText("cannon click");
-
 			double atAngle;
 
 			try
@@ -106,7 +155,7 @@ public class Control extends JPanel implements ActionListener {
 
 		if(e.getSource().equals(fireCannon))
 		{	
-			double initVelocity; 
+			double initVelocity;
 			
 			try 
 			{
@@ -129,7 +178,8 @@ public class Control extends JPanel implements ActionListener {
 			game.setInitialVelocity(initVelocity);
 			board.repaint();
 			game.fireProjectile();
-			distanceFromTarget.setText("fire cannon click");	
+			shots.setText(""+ game.getShotsTaken());
+			distanceFromTarget.setText("Fire");//+game.getDistance()+ " meters");	
 		}
 	}
 }

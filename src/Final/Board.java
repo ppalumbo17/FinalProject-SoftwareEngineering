@@ -57,13 +57,21 @@ public class Board extends JPanel {
 	}
 	public void paintComponent(Graphics g)
 	{
+		
 		super.paintComponent(g);
 		graphics=(Graphics2D)g;
 		cannon.draw((Graphics2D) g);
 		
 		target.draw((Graphics2D) g);
+		if(GameRunner.cannonCount == 1)
+			g.setColor(Color.RED);
+		else if(GameRunner.cannonCount == 2)
+			g.setColor(Color.WHITE);
+		else if(GameRunner.cannonCount == 3)
+			g.setColor(Color.BLUE);
 		if(!trajectory.isEmpty()){
-			g.setColor(Color.BLACK);
+			
+			
 			for(Point p:trajectory){
 				g.fillOval((int)p.getX(),(int)p.getY(),3,3);
 			}
