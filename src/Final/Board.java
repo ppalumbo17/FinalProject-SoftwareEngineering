@@ -82,8 +82,6 @@ public class Board extends JPanel {
 			return;
 		}
 		
-		// g.setColor(Color.black);
-		//g.fillRect(100, 20, 900-100- 20, 500 - 20);
 	}
 
 	private void drawTrajectory() {

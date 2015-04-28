@@ -127,10 +127,10 @@ public class PartITests {
 
 		projectile.setAngle(45);
 		projectile.setVelocity(10);
-		Assert.assertTrue(Math.abs(projectile.getYCoor(1.25)- 1.18258) < 0.0001);
+		Assert.assertTrue(Math.abs(projectile.getYCoor(1.25) + 1.18258) < 0.0001);
 
 		projectile.setAngle(35);
 		projectile.setVelocity(5);
-		Assert.assertTrue(Math.abs(projectile.getYCoor(0.5)- 0.20894) < 0.0001);
+		Assert.assertTrue(Math.abs(projectile.getYCoor(0.5) + 0.20894) < 0.0001);
 	}
 }

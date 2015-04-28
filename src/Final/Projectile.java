@@ -13,7 +13,6 @@ public class Projectile {
 		
 		xInit = xCoor/10;
 		yInit = yCoor/10;
-		//System.out.println(xInit + " projCon "+ yInit);
 		this.xcoor = xCoor;
 		this.ycoor = yCoor;
 		this.angle = angle;

@@ -11,14 +11,16 @@ import java.util.TreeMap;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.WindowConstants;
 
 import com.sun.glass.events.KeyEvent;
 
-public class Quiz extends JFrame implements ActionListener {
+public class Quiz extends JDialog implements ActionListener {
 	private ButtonGroup bgroup;
 	private ArrayList<Question> questions;
 	private ArrayList<Answer> answers;
@@ -33,6 +35,8 @@ public class Quiz extends JFrame implements ActionListener {
 		this.control = control;
 		this.game = game;
 		
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		setModalityType(ModalityType.APPLICATION_MODAL);
 		setTitle("QUIZ FOR EXTRA POITNS!");
 		setSize(new Dimension(450,450));
 		questions = new ArrayList<Question>();
@@ -88,7 +92,9 @@ public class Quiz extends JFrame implements ActionListener {
 			}
 
 			game.setNextTarget();
+			game.resetCannon();
 			dispose();
+			
 			break;
 
 		case 1:		
@@ -99,6 +105,7 @@ public class Quiz extends JFrame implements ActionListener {
 			}
 			
 			game.setNextTarget();
+			game.resetCannon();
 			dispose();
 
 			break;
@@ -111,6 +118,7 @@ public class Quiz extends JFrame implements ActionListener {
 			}
 			
 			game.setNextTarget();
+			game.resetCannon();
 			dispose();
 			
 			break;
@@ -123,6 +131,7 @@ public class Quiz extends JFrame implements ActionListener {
 			}
 			
 			game.setNextTarget();
+			game.resetCannon();
 			dispose();
 
 			break;
@@ -135,6 +144,7 @@ public class Quiz extends JFrame implements ActionListener {
 			}
 			
 			game.displayEndResult();
+			game.resetCannon();
 			dispose();
 
 			break;
@@ -184,48 +194,12 @@ public class Quiz extends JFrame implements ActionListener {
 		questions.add(new Question("Decreasing the initial velocity will...", answers3));
 		
 		
-		// run last, after victory condition
-		// TODO: fix it
+		// run last, before victory condition
 		answers4.add(new Answer(" Decrease the initial horizontal velocity", false));
 		answers4.add(new Answer(" Increase the initial horizontal velocity", true));
 		answers4.add(new Answer(" Increase the initial vertical velocity", false));
 		answers4.add(new Answer(" Increase the total travel time", false));
 		questions.add(new Question("Decreasing the angle will...", answers4));
-		
-		
-//		TreeMap<String,Boolean> answers1=new TreeMap<String,Boolean>();
-//		TreeMap<String,Boolean> answers2=new TreeMap<String,Boolean>();
-//		TreeMap<String,Boolean> answers3=new TreeMap<String,Boolean>();
-//		TreeMap<String,Boolean> answers4=new TreeMap<String,Boolean>();
-//		TreeMap<String,Boolean> answers5=new TreeMap<String,Boolean>();
-//		answers1.put(" A Farther Horizontal Distance", false);
-//		answers1.put(" As Far of a Horizontal Distance", false);
-//		answers1.put(" Not as Far of a Horizontal Distance", false);
-//		answers1.put(" It depends on the angle", true);
-//		questions.put("As you increase the initial velocity, the ball will travel...",answers1 );
-//		answers2.put(" Lower", false);
-//		answers2.put(" The Same", false);
-//		answers2.put(" Higher", true);
-//		answers2.put(" A Farther Distance", false);
-//		questions.put("As you increase the angle, the ball will travel...",answers2 );
-		
-//		answers3.put(" Vo/g", false);
-//		answers3.put(" Vo ^2 /g", false);
-//		answers3.put(" 2*Vo/g", true);
-//		answers3.put(" g/Vo", false);
-//		questions.put("The total time the ball is in the air is...",answers3 );
-		
-//		answers4.put(" Decrease the total time in the air", true);
-//		answers4.put(" Increase the total time in the air", false);
-//		answers4.put(" Increase the total horizontal distance gone", false);
-//		answers4.put(" Decrease the total horizontal distance gone", false);
-//		questions.put("Decreasing the initial velocity will...",answers4 );
-		
-//		answers5.put(" Decrease the initial horizontal velocity", false);
-//		answers5.put(" Increase the initial horizontal velocity", true);
-//		answers5.put(" Increase the initial vertical velocity", false);
-//		answers5.put(" Increase the total travel time", false);
-//		questions.put("Decreasing the angle will...",answers5 );
 	}
 
 }

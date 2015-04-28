@@ -47,25 +47,7 @@ public class GameRunner extends JFrame {
 
 	public static void main(String[] args){
 		GameRunner runner = new GameRunner();
-		// runner.createTarget(100, 0);
 		runner.setVisible(true);
-
-
-		//runner.setAngle(15);
-
-		//		Scanner sc = new Scanner(System.in);
-
-		//		System.out.println("The target is placed at (100,0) and the cannon at (0,0)\nEnter a starting velocity:");
-		//		double vel = sc.nextDouble();
-
-		//		System.out.println("Please enter a starting angle for the cannon:");
-		//		double ang = sc.nextDouble();
-
-		//		runner.setAngle(ang);
-		//		runner.setInitialVelocity(vel);
-		//		runner.createCannon(0, 500, ang, vel);
-
-		//		System.out.println("The ball landed on the ground at coord (" + (double)Math.round(runner.getXDistance()*1000)/1000 + ",0)");
 	}
 
 
@@ -89,10 +71,7 @@ public class GameRunner extends JFrame {
 
 	}
 
-	//	void calcTrajectory(){
-	//		
-	//	}
-
+	
 	private JMenuItem createFileExitItem() {
 		JMenuItem exitItem = new JMenuItem("Exit");
 
@@ -140,15 +119,7 @@ public class GameRunner extends JFrame {
 		return shotsTaken;
 	}
 
-	//NEEDS WORK
-	public double distanceFromTarget(){
-		/*System.out.println("X: " + target.getxCoor());
-		System.out.println("Y: " + target.getyCoor());
-		System.out.println("XP: " + projectile.getXCoor(initialVelocity/GRAVITY));
-		System.out.println("YP: " + projectile.getYCoor(initialVelocity/GRAVITY));
-		return (Math.abs(Math.sqrt((Math.pow(projectile.getXCoor(initialVelocity/GRAVITY)-target.getxCoor(), 2)+Math.pow(projectile.getYCoor(initialVelocity/GRAVITY) - target.getyCoor(), 2)))))/10;*/
-		return 0;
-	}
+	
 
 	public boolean targetReached(Target target) {
 
@@ -180,6 +151,15 @@ public class GameRunner extends JFrame {
 		}
 	}
 
+	public void setFireable(boolean canFire)
+	{
+		this.canFire = canFire;
+	}
+	public void resetCannon(){
+		board.clearTrajectory();
+		cannonCount = 0;
+		canFire = true;
+	}
 	void fireProjectile(){
 		if (!canFire) return;
 		
@@ -191,22 +171,17 @@ public class GameRunner extends JFrame {
 			
 		}
 		else{
-			//JOptionPane.showMessageDialog(null, "You've fired your alotted number of shots for this target", "New Target Incoming", JOptionPane.PLAIN_MESSAGE);
+			
 			board.clearTrajectory();
-//			setNextTarget();
+
 			cannonCount = 0;
 			canFire = true;
 			return;
 		}
 		calcTotalTime();
-		//board.repaint();
-		//System.out.println(cannon.getTipX() + " fire " +cannon.getTipY());
 		projectile = new Projectile(cannon.getTipX(), cannon.getTipY(), angle, initialVelocity);
 		
 		board.createProjectile(projectile);
-		//board.repaint();
-		// if (timer != null) timer.stop();
-		// timer = new Timer(10, new TimerListener());
 		timerCount = 0;
 		timer.start();
 		shotsTaken++;
@@ -252,16 +227,11 @@ public class GameRunner extends JFrame {
 			board.clearTrajectory();
 			Control.setTargetsHit();
 			Control.setScore((40 - (10*cannonCount)));
-			//Quiz z = new Quiz(targetCount, control);
-			//NEEDS WORK
 			if (targetCount < TARGET_COUNT){
 				Quiz z = new Quiz(targetCount, control, this);
-//				setNextTarget();
 				cannonCount = 0;
 			}
-			else{
-//				displayEndResult();
-			}
+			
 		}
 		if (projectile.getXCoor()*10 > WINDOW_WIDTH || projectile.getYCoor()*10 > WINDOW_HEIGHT - 150) {
 			canFire = true;

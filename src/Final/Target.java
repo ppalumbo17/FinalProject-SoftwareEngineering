@@ -33,13 +33,12 @@ public class Target {
 	public void draw(Graphics2D g) {
 		g.setColor(Color.RED);
 		rect = new Rectangle2D.Double(xcoor, ycoor, TARGET_SIZE, TARGET_SIZE);
-		//g.fill(rect);
 		g.fillOval(xcoor, ycoor, TARGET_SIZE, TARGET_SIZE);
 	}
 	public boolean contains(double x, double y){
-		//System.out.println(xcoor+"     derp    "+ycoor);
+		
 		return rect.contains(new Point2D.Double(x, y));
 		
-		// return(x < xcoor + TARGET_SIZE+50 && x > xcoor && y < ycoor + TARGET_SIZE+50 && y > ycoor);
+		
 	}
 }

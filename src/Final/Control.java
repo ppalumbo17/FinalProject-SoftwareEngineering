@@ -76,12 +76,6 @@ public class Control extends JPanel implements ActionListener {
 		panel3.add(new JLabel("Score"));
 		panel3.add(score);
 		
-		//panel1.setBackground(new Color(56,154,224));
-		//panel2.setBackground(new Color(56,154,224));
-		//panel3.setBackground(new Color(56,154,224));
-		
-		
-		
 		// add buttons and fields to control panel
 		add(panel1);
 		add(panel2);
@@ -170,9 +164,8 @@ public class Control extends JPanel implements ActionListener {
 		game.setInitialVelocity(initVelocity);
 		game.fireProjectile();
 		shots.setText(""+ game.getShotsTaken());
-		gameStatusField.setText("Fire");//+game.getDistance()+ " meters");
+		gameStatusField.setText("Fire");
 	}
-	// public void
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
