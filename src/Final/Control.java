@@ -10,7 +10,7 @@ public class Control extends JPanel implements ActionListener {
 
 	private JTextField angle;
 	private JTextField initialVelocity;
-	private JTextField distanceFromTarget;
+	private JTextField gameStatusField;
 	private JTextField shots;
 	private static JTextField targetsHit, score;
 	private int totalShots;
@@ -41,7 +41,7 @@ public class Control extends JPanel implements ActionListener {
 		// create text fields
 		angle = new JTextField();
 		initialVelocity = new JTextField();
-		distanceFromTarget = new JTextField();
+		gameStatusField = new JTextField();
 		score = new JTextField();
 		shots = new JTextField();
 		targetsHit = new JTextField();
@@ -94,12 +94,12 @@ public class Control extends JPanel implements ActionListener {
 		initialVelocity.setText("30");
 		add(initialVelocity);
 		add(createCannon);
-		add(new JLabel("Distance from Target:"));
-		add(distanceFromTarget);
+		add(new JLabel("Game Status: "));
+		add(gameStatusField);
 		add(endGameButton);
 
 		// change settings for panels
-		distanceFromTarget.setEditable(false);
+		gameStatusField.setEditable(false);
 		setVisible(true);	
 	}
 
@@ -124,7 +124,7 @@ public class Control extends JPanel implements ActionListener {
 	}
 	
 	public void drawCannonClicked(){
-		distanceFromTarget.setText("cannon click");
+		gameStatusField.setText("cannon click");
 		double atAngle;
 
 		try
@@ -193,7 +193,14 @@ public class Control extends JPanel implements ActionListener {
 			// board.repaint();
 			game.fireProjectile();
 			shots.setText(""+ game.getShotsTaken());
-			distanceFromTarget.setText("Fire");//+game.getDistance()+ " meters");	
+			gameStatusField.setText("Fire");//+game.getDistance()+ " meters");	
 		}
+	}
+
+	public void finishQuiz() {
+		setScore(10);
+		gameStatusField.setText("Quiz Correct! +10 points");
+		
+		
 	}
 }

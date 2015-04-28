@@ -62,7 +62,7 @@ public class Cannon {
 		
 		tipX = (int) (rotatedRect.getBounds2D().getX() + rotatedRect.getBounds2D().getWidth());
 		tipY = (int) (rotatedRect.getBounds2D().getY());
-		System.out.println(tipX + " setTip " + tipY);
+		//System.out.println(tipX + " setTip " + tipY);
 	}
 	
 	

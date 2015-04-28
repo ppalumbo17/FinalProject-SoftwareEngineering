@@ -120,7 +120,7 @@ public class GameRunner extends JFrame {
 		angle = i;
 		cannon.setAngle(360-angle);
 		board.changeCannon(cannon);
-		//board.repaint();
+		board.repaint();
 	}
 
 	public void setInitialVelocity(double i) {
@@ -186,15 +186,16 @@ public class GameRunner extends JFrame {
 			
 		}
 		else{
-			JOptionPane.showMessageDialog(null, "You've fired your alotted number of shots for this target", "New Target Incoming", JOptionPane.PLAIN_MESSAGE);
+			//JOptionPane.showMessageDialog(null, "You've fired your alotted number of shots for this target", "New Target Incoming", JOptionPane.PLAIN_MESSAGE);
 			board.clearTrajectory();
 			setNextTarget();
 			cannonCount = 0;
+			Quiz z = new Quiz(targetCount-1, control);
 			return;
 		}
 		calcTotalTime();
 		//board.repaint();
-		System.out.println(cannon.getTipX() + " fire " +cannon.getTipY());
+		//System.out.println(cannon.getTipX() + " fire " +cannon.getTipY());
 		projectile = new Projectile(cannon.getTipX(), cannon.getTipY(), angle, initialVelocity);
 		
 		board.createProjectile(projectile);
@@ -247,7 +248,7 @@ public class GameRunner extends JFrame {
 			board.clearTrajectory();
 			Control.setTargetsHit();
 			Control.setScore((40 - (10*cannonCount)));
-			
+			Quiz z = new Quiz(targetCount-1, control);
 			//NEEDS WORK
 			if (targetCount < TARGET_COUNT && !(((Math.round(Control.realScore/20)+shotsTaken)/3) >= TARGET_COUNT)){
 				setNextTarget();
