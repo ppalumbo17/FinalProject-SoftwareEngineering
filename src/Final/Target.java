@@ -16,6 +16,7 @@ public class Target {
 	public Target(int xcoor, int ycoor){
 		this.xcoor = xcoor;
 		this.ycoor = ycoor;
+		rect = new Rectangle2D.Double(xcoor, ycoor, TARGET_SIZE, TARGET_SIZE);
 	}
 	public int getxCoor() {
 		return xcoor;
