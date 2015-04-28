@@ -1,0 +1,179 @@
+commit c0058ac306afa33db6317c7301fa1437dd2d2a9e
+Author: Peter Palumbo <ppalumbo@mines.edu>
+Date:   Mon Apr 27 22:50:46 2015 -0600
+
+    Final Project Complete. Completed using pair programming.
+
+commit 9f45a95e32ddb00e619c596fc94b13fac08fba74
+Author: Peter Palumbo <ppalumbo@mines.edu>
+Date:   Mon Apr 27 22:17:11 2015 -0600
+
+    Quiz Working as JFrame
+
+commit 5374b329a4d20cd2a80dbcb9c59863d69f1699a0
+Author: Peter Palumbo <ppalumbo@mines.edu>
+Date:   Mon Apr 27 21:52:45 2015 -0600
+
+    Shoots from correct location
+
+commit b8b6ce8a843b7aef2f4f2a3e25dfb9588131f5cd
+Author: Peter Palumbo <ppalumbo@mines.edu>
+Date:   Mon Apr 27 21:03:38 2015 -0600
+
+    Quiz working
+
+commit cc5db796a89dfe628a4d0c4dbf9125b9b8c6e5a5
+Author: Peter Palumbo <ppalumbo@mines.edu>
+Date:   Mon Apr 27 18:03:03 2015 -0600
+
+    Added Quiz (Incomplete)
+
+commit 63c5b3530f3d6eb0669a836f297e556d1b0d55cf
+Author: Peter Palumbo <ppalumbo@mines.edu>
+Date:   Mon Apr 27 16:12:31 2015 -0600
+
+    control gui changed
+
+commit 6d0134eb12d9d2ffc314e5cb9a5ebac6bd7f2cbb
+Author: Peter Palumbo <ppalumbo@mines.edu>
+Date:   Mon Apr 27 15:32:51 2015 -0600
+
+    Index OOB fixed
+
+commit 7ccda27ced47164091a512bb69e300d144de80b1
+Author: Peter Palumbo <ppalumbo@mines.edu>
+Date:   Mon Apr 27 14:55:52 2015 -0600
+
+    End Game Put in Place
+
+commit ada471d49615a4b2661e5956f8860c2ec227fef7
+Author: ppalumbo17 <ppalumbo@mines.edu>
+Date:   Mon Apr 27 03:28:31 2015 -0600
+
+    Added Score Counter Changed Trajectory
+
+commit e56974787336e7e189e6fa5b5834a0ed5decfbe5
+Author: Alex Kurzon <Akurzon@mymail.mines.edu>
+Date:   Sun Apr 26 20:51:33 2015 -0600
+
+    trajectories drawn
+
+commit e738c4f518bcea1a4ce076974c050dcb40ee4a97
+Author: Alex Kurzon <Akurzon@mymail.mines.edu>
+Date:   Sun Apr 26 16:58:43 2015 -0600
+
+    projectile fires
+
+commit c6bd540ce11f2995ce83a849f3a7aca74433999f
+Author: Alex Kurzon <Akurzon@mymail.mines.edu>
+Date:   Fri Apr 24 16:48:30 2015 -0600
+
+    small thing didn't save
+
+commit 19ae374d5752a86aa45afa28c755f7cabbadb78f
+Author: Alex Kurzon <Akurzon@mymail.mines.edu>
+Date:   Fri Apr 24 16:47:20 2015 -0600
+
+    setup some functionality for creating targets
+
+commit 20042a8002d3986aa2b329bac8104090a3645104
+Author: Alex Kurzon <Akurzon@mymail.mines.edu>
+Date:   Fri Apr 24 16:25:27 2015 -0600
+
+    error messages setup for angles
+
+commit f6d0d8e2529f1c50889639df505b56313b98bb44
+Author: Alex Kurzon <Akurzon@mymail.mines.edu>
+Date:   Fri Apr 24 16:13:31 2015 -0600
+
+    cannon draws and changes angle when a new one is entered
+
+commit d28e03fe096d54677da347d8ad914ac678936212
+Author: Alex Kurzon <Akurzon@mymail.mines.edu>
+Date:   Fri Apr 24 16:13:07 2015 -0600
+
+    cannon draws and changes angle when a new one is entered
+
+commit 40af1e9125fa75d0ff653ee43f0e67d267d11724
+Author: Alex Kurzon <Akurzon@mymail.mines.edu>
+Date:   Wed Apr 22 17:10:04 2015 -0600
+
+    part 1 submission commit
+
+commit 5d97b460df6ea50fedca0cca46ba7468a67310b4
+Author: Alex Kurzon <Akurzon@mymail.mines.edu>
+Date:   Wed Apr 22 16:58:53 2015 -0600
+
+    control GUI added
+
+commit 8b1f253312474cd904962b1ec603606b1095e423
+Author: Alex Kurzon <Akurzon@mymail.mines.edu>
+Date:   Wed Apr 22 16:29:33 2015 -0600
+
+    GUI started, Jframe setup
+
+commit 48dc2766a82d17fd28d2bf0ac9c20baf3d15871d
+Author: Peter Palumbo <ppalumbo@mines.edu>
+Date:   Tue Apr 21 12:14:46 2015 -0600
+
+    Changed projectile to follow path
+
+commit 71f4955c21c630fc31010b1fc4da5f7d42416d32
+Author: Peter Palumbo <ppalumbo@mines.edu>
+Date:   Mon Apr 20 21:28:00 2015 -0600
+
+    X and Y cannon projectile coordinate tests pass
+
+commit 38f20877a1f73c6931c8040c81f2fda7cccff2ce
+Author: Peter Palumbo <ppalumbo@mines.edu>
+Date:   Mon Apr 20 21:12:56 2015 -0600
+
+    Added Failing tests for x and y coordinates for cannon class
+
+commit 778fd531c6070797a0a04a518d6aa59ff1bf4bab
+Author: akurzon <akurzon@mymail.mines.edu>
+Date:   Mon Apr 20 20:52:37 2015 -0600
+
+    added constructors for target and cannon, added private variables to hold a target and cannon for the gameRunner
+
+commit 852ea803248246d9bc5b906cd332022fe3b63f7b
+Author: Peter Palumbo <ppalumbo@mines.edu>
+Date:   Thu Apr 16 12:14:34 2015 -0600
+
+    Implemented claculating functions
+
+commit 45b71f4f98c9a6600597dc872adf0fdc88b7a3eb
+Author: Peter Palumbo <ppalumbo@mines.edu>
+Date:   Wed Apr 15 22:24:34 2015 -0600
+
+    Tests Pass
+
+commit 45d18f7a93a445639f4234a099c189559251a6a5
+Author: Peter Palumbo <ppalumbo@mines.edu>
+Date:   Wed Apr 15 21:56:07 2015 -0600
+
+    Two of 4 passing
+
+commit fe9142f008c052a30f8a041bff49f969de392016
+Author: Peter Palumbo <ppalumbo@mines.edu>
+Date:   Wed Apr 15 21:15:45 2015 -0600
+
+    Tests Package Added
+
+commit 3fe974b1b738cdfcc16be4c147e7ba747dbd1dbc
+Author: Peter Palumbo <ppalumbo@mines.edu>
+Date:   Wed Apr 15 21:13:59 2015 -0600
+
+    Failing Tests First Draft
+
+commit bb43c67bdcfd03c0fac4ce16a816b337586e39b9
+Author: Peter Palumbo <ppalumbo@mines.edu>
+Date:   Tue Apr 14 12:12:00 2015 -0600
+
+    Base
+
+commit 16fca86ded2ffb718e6d313a7f496a40f628d216
+Author: ppalumbo17 <ppalumbo@mines.edu>
+Date:   Tue Apr 7 11:36:35 2015 -0600
+
+    Initial commit
