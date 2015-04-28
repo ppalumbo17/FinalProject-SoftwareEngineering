@@ -26,10 +26,13 @@ public class Quiz extends JFrame implements ActionListener {
 	private ArrayList<JRadioButton> buttonList;
 	private int qNumber;
 	private Control control;
+	private GameRunner game;
 
-	public Quiz(int qNumber, Control control){
+	public Quiz(int qNumber, Control control, GameRunner game){
 		this.qNumber = qNumber;
 		this.control = control;
+		this.game = game;
+		
 		setTitle("QUIZ FOR EXTRA POITNS!");
 		setSize(new Dimension(450,450));
 		questions = new ArrayList<Question>();
@@ -84,6 +87,7 @@ public class Quiz extends JFrame implements ActionListener {
 				control.finishQuiz();
 			}
 
+			game.setNextTarget();
 			dispose();
 			break;
 
@@ -94,6 +98,7 @@ public class Quiz extends JFrame implements ActionListener {
 				control.finishQuiz();
 			}
 			
+			game.setNextTarget();
 			dispose();
 
 			break;
@@ -105,7 +110,10 @@ public class Quiz extends JFrame implements ActionListener {
 				control.finishQuiz();
 			}
 			
+			game.setNextTarget();
 			dispose();
+			
+			break;
 
 		case 3:
 			System.out.println("case 3 was run");
@@ -114,8 +122,11 @@ public class Quiz extends JFrame implements ActionListener {
 				control.finishQuiz();
 			}
 			
+			game.setNextTarget();
 			dispose();
 
+			break;
+			
 		case 4:
 			System.out.println("case 4 was run");
 			if (((JRadioButton)e.getSource()).getText().equals(" Increase the initial horizontal velocity"))
@@ -123,8 +134,11 @@ public class Quiz extends JFrame implements ActionListener {
 				control.finishQuiz();
 			}
 			
+			game.displayEndResult();
 			dispose();
 
+			break;
+			
 		default:
 			System.out.println("case -1 was run?");
 			dispose();

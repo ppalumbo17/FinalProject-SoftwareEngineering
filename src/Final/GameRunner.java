@@ -193,7 +193,7 @@ public class GameRunner extends JFrame {
 		else{
 			//JOptionPane.showMessageDialog(null, "You've fired your alotted number of shots for this target", "New Target Incoming", JOptionPane.PLAIN_MESSAGE);
 			board.clearTrajectory();
-			setNextTarget();
+//			setNextTarget();
 			cannonCount = 0;
 			canFire = true;
 			return;
@@ -255,18 +255,18 @@ public class GameRunner extends JFrame {
 			//Quiz z = new Quiz(targetCount, control);
 			//NEEDS WORK
 			if (targetCount < TARGET_COUNT){
-				Quiz z = new Quiz(targetCount, control);
-				setNextTarget();
+				Quiz z = new Quiz(targetCount, control, this);
+//				setNextTarget();
 				cannonCount = 0;
 			}
 			else{
-				displayEndResult();
+//				displayEndResult();
 			}
 		}
-		if (projectile.getXCoor()*10 > WINDOW_WIDTH || projectile.getYCoor()*10 > WINDOW_HEIGHT) {
+		if (projectile.getXCoor()*10 > WINDOW_WIDTH || projectile.getYCoor()*10 > WINDOW_HEIGHT - 150) {
 			canFire = true;
 			if(cannonCount == 3){
-				Quiz z = new Quiz(targetCount, control);
+				Quiz z = new Quiz(targetCount, control, this);
 			}
 			timer.stop();
 		}
