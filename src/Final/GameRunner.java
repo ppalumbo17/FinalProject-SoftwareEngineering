@@ -21,6 +21,7 @@ public class GameRunner extends JFrame {
 	private ArrayList<Target> targetList;
 	private TargetGenerator generator;
 	private Timer timer;
+	private boolean canFire;
 	
 	public static int cannonCount;
 	private static final double GRAVITY = 9.8;
@@ -31,6 +32,7 @@ public class GameRunner extends JFrame {
 
 	public GameRunner()
 	{
+		canFire = true;
 		generator = new TargetGenerator(WINDOW_WIDTH / 2, Target.TARGET_SIZE, WINDOW_WIDTH / 2 - Target.TARGET_SIZE, WINDOW_HEIGHT / 2 - Target.TARGET_SIZE);
 		cannon = new Cannon();
 		targetList = generateTargets(TARGET_COUNT);
@@ -179,6 +181,9 @@ public class GameRunner extends JFrame {
 	}
 
 	void fireProjectile(){
+		if (!canFire) return;
+		
+		canFire = false;
 		
 		if(cannonCount < 3){
 			cannonCount++;
@@ -190,7 +195,7 @@ public class GameRunner extends JFrame {
 			board.clearTrajectory();
 			setNextTarget();
 			cannonCount = 0;
-			Quiz z = new Quiz(targetCount-1, control);
+			canFire = true;
 			return;
 		}
 		calcTotalTime();
@@ -205,8 +210,6 @@ public class GameRunner extends JFrame {
 		timerCount = 0;
 		timer.start();
 		shotsTaken++;
-		
-		
 	}
 	
 	public Cannon getCannon() {
@@ -243,14 +246,16 @@ public class GameRunner extends JFrame {
 			board.drawDot(projectile.getXCoor() * 10,projectile.getYCoor() * 10);
 		}
 		if(target.contains(xcenter,ycenter)){
+			canFire = true;
 			JOptionPane.showMessageDialog(null, "Good Job! You hit the target in just " + (cannonCount) + " tries!", "NEXT TARGET DISPLAYED",JOptionPane.PLAIN_MESSAGE);
 			timer.stop();
 			board.clearTrajectory();
 			Control.setTargetsHit();
 			Control.setScore((40 - (10*cannonCount)));
-			Quiz z = new Quiz(targetCount-1, control);
+			//Quiz z = new Quiz(targetCount, control);
 			//NEEDS WORK
-			if (targetCount < TARGET_COUNT && !(((Math.round(Control.realScore/20)+shotsTaken)/3) >= TARGET_COUNT)){
+			if (targetCount < TARGET_COUNT){
+				Quiz z = new Quiz(targetCount, control);
 				setNextTarget();
 				cannonCount = 0;
 			}
@@ -259,7 +264,10 @@ public class GameRunner extends JFrame {
 			}
 		}
 		if (projectile.getXCoor()*10 > WINDOW_WIDTH || projectile.getYCoor()*10 > WINDOW_HEIGHT) {
-			JOptionPane.showMessageDialog(null, "You've gone too far!", "Out Of Bounds", JOptionPane.INFORMATION_MESSAGE);
+			canFire = true;
+			if(cannonCount == 3){
+				Quiz z = new Quiz(targetCount, control);
+			}
 			timer.stop();
 		}
 	}

@@ -86,6 +86,19 @@ public class Cannon {
 	public void setAngle(double angle) {
 		this.angle = angle;
 		theta = Math.toRadians(angle);
+		
+		AffineTransform transform = new AffineTransform();
+		transform.translate(xcoor, ycoor); 
+		transform.rotate(theta);
+		
+		Rectangle2D rect = new Rectangle2D.Double(-width / 2 + 15, -height / 2, width, height);
+		Shape rotatedRect = transform.createTransformedShape(rect);
+		
+		shape = rotatedRect;
+		
+		setTipCoordinates(rotatedRect);
+		
+		
 	}
 	public double getVelocity() {
 		return velocity;

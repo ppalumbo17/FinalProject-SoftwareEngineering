@@ -34,7 +34,7 @@ public class Control extends JPanel implements ActionListener {
 		setLayout(new GridLayout(4,3));
 
 		// create buttons
-		createCannon = new JButton("Draw Cannon");
+		createCannon = new JButton("Move Cannon");
 		endGameButton = new JButton("End Game");
 		fireCannon = new JButton("Fire!");
 
@@ -166,6 +166,11 @@ public class Control extends JPanel implements ActionListener {
 			JOptionPane.showMessageDialog(null, "Please enter a positive number value for velocity", "Error", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
+		
+		game.setInitialVelocity(initVelocity);
+		game.fireProjectile();
+		shots.setText(""+ game.getShotsTaken());
+		gameStatusField.setText("Fire");//+game.getDistance()+ " meters");
 	}
 	// public void
 	
@@ -186,14 +191,9 @@ public class Control extends JPanel implements ActionListener {
 		if(e.getSource().equals(fireCannon))
 		{	
 			drawCannonClicked();
-			
 			fireCannonClicked();
 			
-			game.setInitialVelocity(initVelocity);
-			// board.repaint();
-			game.fireProjectile();
-			shots.setText(""+ game.getShotsTaken());
-			gameStatusField.setText("Fire");//+game.getDistance()+ " meters");	
+				
 		}
 	}
 
